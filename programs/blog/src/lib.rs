@@ -37,6 +37,9 @@ pub mod blog {
         Ok(())
 
     }
+    pub fn create_post(ctx: Context<CreatePOst>, title : Sting, content: String)->ProgramResult{
+        Ok(())
+    }
 }
 
 #[derive(Accounts)]
@@ -56,6 +59,15 @@ pub struct UpdateUser<'info> {
     pub authority  : Signer<'info>,
 }
 
+#[derive(Accounts)]
+pub struct CreatePost <'info>{
+    #[account(init, payer = authority, space = 8+50+500+32+32+32)]
+    pub post_account : Account<'info, PostState>,
+    #[account(mut, has_one = authority)]
+    pub user_account : Account<'info, UserState>,
+    #[account(mut)]
+    pub 
+}
 // State Values	Data Types	Size (in bytes)
 // authority	Pubkey	32
 // name	String	40
